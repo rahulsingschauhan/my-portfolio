@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .heading-primary {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-secondary {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+  }
+
+  .button {
+    @apply px-8 py-3 rounded-xl font-semibold transition-all duration-400 ease-in-out-quart;
+  }
+
+  .button-primary {
+    @apply bg-primary-button text-text-primary hover:bg-opacity-80 transform hover:-translate-y-1;
+  }
+
+  .button-secondary {
+    @apply border-2 border-accent text-accent hover:bg-accent hover:text-text-primary;
+  }
+}

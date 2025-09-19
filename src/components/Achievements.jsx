@@ -1,34 +1,50 @@
 import React from 'react';
+import useInView from '../hooks/useInView';
 
 const achievements = [
   {
-    icon: 'fas fa-trophy',
-    title: '15+ Deployed Apps',
-    description: 'Successfully deployed over 15 apps on the Google Play Store and Apple App Store.',
+    title: 'Employee of the Month',
+    issuer: 'Technorizen Software Solutions',
+    year: '2024',
+    description: 'Recognized for outstanding performance and dedication.'
   },
   {
-    icon: 'fas fa-mobile-alt',
-    title: 'Full Lifecycle Expertise',
-    description: 'Expertise in the full mobile app lifecycle and meeting tight deadlines.',
+    title: 'Star Performer',
+    issuer: 'Moryeahs IT Technologies',
+    year: '2023',
+    description: 'Awarded for exceeding project goals and teamwork.'
   },
   {
-    icon: 'fas fa-star',
-    title: 'High User Satisfaction',
-    description: 'Excellent feedback and user satisfaction for deployed apps.',
-  },
+    title: 'Dean’s List',
+    issuer: 'Institute of Management Studies, DAVV',
+    year: '2022',
+    description: 'Achieved academic excellence during my MBA program.'
+  }
 ];
 
 const Achievements = () => {
+  const [achievementsRef, achievementsInView] = useInView({ threshold: 0.1 });
+
   return (
-    <section id="achievements" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">My Achievements</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <section 
+      ref={achievementsRef}
+      id="achievements" 
+      className={`section bg-primary transition-all duration-1000 ${achievementsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className="container mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="heading-secondary">Achievements</h2>
+          <p className="text-lg text-text-secondary mt-2">A few of my proudest accomplishments.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((achievement, index) => (
-            <div key={index} className="bg-gray-900 rounded-lg p-8 shadow-lg text-center transform transition-transform hover:-translate-y-2">
-              <i className={`${achievement.icon} text-blue-500 text-4xl mb-6`}></i>
-              <h3 className="text-2xl font-bold mb-3">{achievement.title}</h3>
-              <p className="text-gray-400">{achievement.description}</p>
+            <div 
+              key={index} 
+              className="bg-secondary p-8 rounded-xl shadow-card hover:shadow-card-hover transform hover:-translate-y-2 transition-all duration-400 ease-in-out-quart border border-transparent hover:border-accent">
+              <div className="mb-4">
+                <h3 className="text-xl font-bold text-text-primary">{achievement.title}</h3>
+                <p className="text-md font-semibold text-text-secondary">{achievement.issuer} ({achievement.year})</p>
+              </div>
+              <p className="text-text-secondary">{achievement.description}</p>
             </div>
           ))}
         </div>
